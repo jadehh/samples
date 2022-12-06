@@ -1,11 +1,11 @@
 import os
 import numpy as np
 from PIL import Image
-
 import acl
 import acllite.acllite_utils as utils
 import acllite.acllite_logger as acl_log
 import acllite.constants as const
+import cv2
 
 class AclLiteImage(object):
     """Image data and operation class
@@ -198,6 +198,12 @@ class AclLiteImage(object):
         """Save image as file"""
         image_np = self.byte_data_to_np_array()
         image_np.tofile(filename)
+
+
+    def jpeg_to_cv2(self):
+        image_np = self.byte_data_to_np_array()
+        img_cv = cv2.imdecode(np.frombuffer(image_np, np.uint8), cv2.IMREAD_ANYCOLOR)
+        return img_cv
 
     def destroy(self):
         """Release image memory"""
