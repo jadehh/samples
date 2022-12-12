@@ -1,4 +1,4 @@
-## Acllite v1.0.0
+## Acllite v1.0.2
 
 ### 更新日志
 * update 新增AclliteImage转cv2 Image
