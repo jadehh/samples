@@ -132,7 +132,7 @@ class VideoCapture(object):
 
         if self._status == DECODE_STATUS_READY:
             self._is_opened = True
-            acl_log.log_info("Ready to decode %s..." % (self._stream_name))
+            # acl_log.log_info("Ready to decode %s..." % (self._stream_name))
         else:
             acl_log.log_error("Open %s failed for wait ready timeout"
                               % (self._stream_name))
@@ -161,15 +161,15 @@ class VideoCapture(object):
         self._width = video_context.width
         self._height = video_context.height
 
-        acl_log.log_info(
-            "Get %s infomation: width %d, height %d, profile %d, "
-            "codec %s, entype %d" %
-            (self._stream_name,
-             self._width,
-             self._height,
-             profile,
-             codec_id_name,
-             self._entype))
+        # acl_log.log_info(
+        #     "Get %s infomation: width %d, height %d, profile %d, "
+        #     "codec %s, entype %d" %
+        #     (self._stream_name,
+        #      self._width,
+        #      self._height,
+        #      profile,
+        #      codec_id_name,
+        #      self._entype))
 
         container.close()
 
@@ -223,7 +223,7 @@ class VideoCapture(object):
         frame = 0
         video = av.open(self._stream_name)
         stream = [s for s in video.streams if s.type == 'video']
-        acl_log.log_info("Start decode %s frames" % (self._stream_name))
+        # acl_log.log_info("Start decode %s frames" % (self._stream_name))
         for packet in video.demux([stream[0]]):
             # Get frame data from packet and copy to dvpp
             frame_data, data_size = self._prepare_frame_data(packet)
@@ -241,8 +241,8 @@ class VideoCapture(object):
 
             # The status chang to stop when app stop decode
             if self._status != DECODE_STATUS_RUNNING:
-                acl_log.log_info("Decode status change to %d, stop decode"
-                                 % (self._status))
+                # acl_log.log_info("Decode status change to %d, stop decode"
+                #                  % (self._status))
                 break
 
     def _prepare_frame_data(self, packet):
@@ -250,7 +250,7 @@ class VideoCapture(object):
         size = in_frame_np.size
         if size == 0:
             # Last frame data is empty
-            acl_log.log_info("Pyav decode finish")
+            # acl_log.log_info("Pyav decode finish")
             self._status = DECODE_STATUS_PYAV_FINISH
             return None, 0
 

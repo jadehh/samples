@@ -8,9 +8,8 @@
 # @Desc     :
 from setuptools import setup
 import os
-with open("README.md","r") as fh:
-    long_description = fh.read()
-
+with open("acllite/README.md","rb") as fh:
+    long_description = str(fh.read(),encoding="utf-8")
 def find_packages(path,pack_list):
     for file_path in os.listdir(path):
         if os.path.isdir(os.path.join(path,file_path)):
@@ -28,7 +27,7 @@ if __name__ == '__main__':
     find_packages("acllite",pack_list)
 setup(
     name="acllite",
-    version="1.0.2",
+    version="1.0.3",
     keywords=("pip", "acllite", ""),
     description="acllite",
     long_description=long_description,

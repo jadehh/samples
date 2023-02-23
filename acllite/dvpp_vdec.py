@@ -77,13 +77,14 @@ class DvppVdec(object):
         self._get_pic_desc_data(output_pic_desc, user_data)
 
     def _get_pic_desc_data(self, pic_desc, user_data):
-        pic_data = acl.media.dvpp_get_pic_desc_data(pic_desc)
+        pic_data = acl.media.dvpp.\
+            _get_pic_desc_data(pic_desc)
         pic_data_size = acl.media.dvpp_get_pic_desc_size(pic_desc)
         ret_code = acl.media.dvpp_get_pic_desc_ret_code(pic_desc)
         if ret_code:
             channel_id, frame_id = user_data
-            acl_log.log_error("Decode channel %d frame %d failed, error %d"
-                              % (channel_id, frame_id, ret_code))
+            # acl_log.log_error("Decode channel %d frame %d failed, error %d"
+            #                   % (channel_id, frame_id, ret_code))
             acl.media.dvpp_free(pic_data)
         else:
             image = AclLiteImage(pic_data, self._width, self._height, 0, 0,
@@ -241,7 +242,8 @@ class DvppVdec(object):
             try:
                 image = self._frame_queue.get_nowait()
             except queue.Empty:
-                acl_log.log_info("No decode frame in queue anymore")
+                pass
+                # acl_log.log_info("No decode frame in queue anymore")
         else:
             try:
                 image = self._frame_queue.get(timeout=READ_TIMEOUT)

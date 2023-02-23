@@ -217,7 +217,7 @@ class AclLiteImageProc(object):
         """
         crop_and_paste
         """
-        print('[AclLiteImageProc] vpc crop and paste stage:')
+        # print('[AclLiteImageProc] vpc crop and paste stage:')
         input_desc = self._gen_input_pic_desc(image)
         stride_width = utils.align_up16(crop_and_paste_width)
         stride_height = utils.align_up2(crop_and_paste_height)
@@ -258,7 +258,7 @@ class AclLiteImageProc(object):
         utils.check_ret("acl.media.dvpp_vpc_crop_and_paste_async", ret)
         ret = acl.rt.synchronize_stream(self._stream)
         utils.check_ret("acl.rt.synchronize_stream", ret)
-        print('[AclLiteImageProc] vpc crop and paste stage success')
+        # print('[AclLiteImageProc] vpc crop and paste stage success')
         stride_width = crop_and_paste_width - 2 * dx
         stride_height = crop_and_paste_height - 2 * dy
         acl.media.dvpp_destroy_pic_desc(input_desc)
@@ -282,7 +282,7 @@ class AclLiteImageProc(object):
         :crop_and_paste_height: crop_and_paste_height
         :return: return AclLiteImage
         """
-        print('[AclLiteImageProc] vpc crop and paste stage:')
+        # print('[AclLiteImageProc] vpc crop and paste stage:')
         input_desc = self._gen_input_pic_desc(image)
         stride_width = utils.align_up16(crop_and_paste_width)
         stride_height = utils.align_up2(crop_and_paste_height)
@@ -306,7 +306,7 @@ class AclLiteImageProc(object):
         utils.check_ret("acl.media.dvpp_vpc_crop_and_paste_async", ret)
         ret = acl.rt.synchronize_stream(self._stream)
         utils.check_ret("acl.rt.synchronize_stream", ret)
-        print('[AclLiteImageProc] vpc crop and paste stage success')
+        # print('[AclLiteImageProc] vpc crop and paste stage success')
         stride_width = utils.align_up16(crop_and_paste_width)
         stride_height = utils.align_up2(crop_and_paste_height)
         acl.media.dvpp_destroy_pic_desc(input_desc)
@@ -350,7 +350,7 @@ class AclLiteImageProc(object):
         # Wait for the conversion to complete
         ret = acl.rt.synchronize_stream(self._stream)
         if (ret != constants.ACL_SUCCESS):
-            print("Jpege synchronize stream, failed, ret ", ret)
+            # print("Jpege synchronize stream, failed, ret ", ret)
             return None
         # Release resources
         acl.media.dvpp_destroy_pic_desc(input_desc)
