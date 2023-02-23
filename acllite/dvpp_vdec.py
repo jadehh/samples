@@ -1,18 +1,11 @@
-import sys
-import os
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-sys.path.append(BASE_DIR)
-import av
-import threading
 import numpy as np
 import acl
-import time
+import queue
+import acllite.constants as const
+import acllite.acllite_utils as utils
+import acllite.acllite_logger as acl_log
+from acllite.acllite_image import AclLiteImage
 
-import constants as const
-import acllite_utils as utils
-import acllite_logger as acl_log
-import dvpp_vdec as dvpp_vdec
-from acllite_image import AclLiteImage
 READ_TIMEOUT = 5
 WAIT_INTERVAL = 0.1
 

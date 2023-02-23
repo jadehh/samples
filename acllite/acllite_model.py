@@ -46,7 +46,7 @@ class AclLiteModel(object):
         resource_list.register(self)
 
     def _init_resource(self):
-        # log_info("Init model resource start...")
+        log_info("Init model resource start...")
         if not os.path.isfile(self._model_path):
             log_error(
                 "model_path failed, please check. model_path=%s" %
@@ -83,12 +83,12 @@ class AclLiteModel(object):
         # recode input data address,if need malloc memory,the memory will be
         # reuseable
         self._init_input_buffer()
-        # log_info("Init model resource success")
+        log_info("Init model resource success")
 
         return const.SUCCESS
 
     def _gen_output_dataset(self, ouput_num):
-        # log_info("[AclLiteModel] create model output dataset:")
+        log_info("[AclLiteModel] create model output dataset:")
         dataset = acl.mdl.create_dataset()
         for i in range(ouput_num):
             # malloc device memory for output
@@ -98,13 +98,13 @@ class AclLiteModel(object):
             # crate oputput data buffer
             dataset_buffer = acl.create_data_buffer(buf, size)
             _, ret = acl.mdl.add_dataset_buffer(dataset, dataset_buffer)
-            # log_info("malloc output %d, size %d" % (i, size))
+            log_info("malloc output %d, size %d" % (i, size))
             if ret:
                 acl.rt.free(buf)
                 acl.destroy_data_buffer(dataset_buffer)
                 utils.check_ret("acl.destroy_data_buffer", ret)
         self._output_dataset = dataset
-        # log_info("Create model output dataset success")
+        log_info("Create model output dataset success")
 
     def _init_input_buffer(self):
         self._input_num = acl.mdl.get_num_inputs(self._model_desc)
@@ -439,7 +439,7 @@ class AclLiteModel(object):
 
         self._is_destroyed = True
         resource_list.unregister(self)
-        # log_info("AclLiteModel release source success")
+        log_info("AclLiteModel release source success")
 
     def __del__(self):
         self.destroy()
