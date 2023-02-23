@@ -1,11 +1,18 @@
+import sys
+import os
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+sys.path.append(BASE_DIR)
+import av
+import threading
 import numpy as np
 import acl
-import queue
-import acllite.constants as const
-import acllite.acllite_utils as utils
-import acllite.acllite_logger as acl_log
-from acllite.acllite_image import AclLiteImage
+import time
 
+import constants as const
+import acllite_utils as utils
+import acllite_logger as acl_log
+import dvpp_vdec as dvpp_vdec
+from acllite_image import AclLiteImage
 READ_TIMEOUT = 5
 WAIT_INTERVAL = 0.1
 
@@ -77,14 +84,13 @@ class DvppVdec(object):
         self._get_pic_desc_data(output_pic_desc, user_data)
 
     def _get_pic_desc_data(self, pic_desc, user_data):
-        pic_data = acl.media.dvpp.\
-            _get_pic_desc_data(pic_desc)
+        pic_data = acl.media.dvpp_get_pic_desc_data(pic_desc)
         pic_data_size = acl.media.dvpp_get_pic_desc_size(pic_desc)
         ret_code = acl.media.dvpp_get_pic_desc_ret_code(pic_desc)
         if ret_code:
             channel_id, frame_id = user_data
-            # acl_log.log_error("Decode channel %d frame %d failed, error %d"
-            #                   % (channel_id, frame_id, ret_code))
+            acl_log.log_error("Decode channel %d frame %d failed, error %d"
+                              % (channel_id, frame_id, ret_code))
             acl.media.dvpp_free(pic_data)
         else:
             image = AclLiteImage(pic_data, self._width, self._height, 0, 0,
