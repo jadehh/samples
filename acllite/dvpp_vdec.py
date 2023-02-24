@@ -82,8 +82,8 @@ class DvppVdec(object):
         ret_code = acl.media.dvpp_get_pic_desc_ret_code(pic_desc)
         if ret_code:
             channel_id, frame_id = user_data
-            acl_log.log_error("Decode channel %d frame %d failed, error %d"
-                              % (channel_id, frame_id, ret_code))
+            # acl_log.log_error("Decode channel %d frame %d failed, error %d"
+            #                   % (channel_id, frame_id, ret_code))
             acl.media.dvpp_free(pic_data)
         else:
             image = AclLiteImage(pic_data, self._width, self._height, 0, 0,
