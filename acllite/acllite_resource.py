@@ -75,7 +75,7 @@ class AclLiteResource(object):
         """
         init resource
         """
-        print("init resource stage:")
+        # print("init resource stage:")
         ret = acl.init()
         utils.check_ret("acl.init", ret)
 
@@ -91,20 +91,20 @@ class AclLiteResource(object):
         self.run_mode, ret = acl.rt.get_run_mode()
         utils.check_ret("acl.rt.get_run_mode", ret)
 
-        print("Init resource success")
+        # print("Init resource success")
 
     def __del__(self):
-        print("acl resource release all resource")
+        # print("acl resource release all resource")
         resource_list.destroy()
         if self.stream:
-            print("acl resource release stream")
+            # print("acl resource release stream")
             acl.rt.destroy_stream(self.stream)
 
         if self.context:
-            print("acl resource release context")
+            # print("acl resource release context")
             acl.rt.destroy_context(self.context)
 
-        print("Reset acl device ", self.device_id)
+        # print("Reset acl device ", self.device_id)
         acl.rt.reset_device(self.device_id)
         acl.finalize()
-        print("Release acl resource success")
+        # print("Release acl resource success")

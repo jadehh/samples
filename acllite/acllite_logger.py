@@ -59,7 +59,7 @@ def log_info(*log_msg):
     """
     log_str = [str(i) for i in log_msg]
     log_str = "".join(log_str)
-    print(log_str)
+    # print(log_str)
     caller_frame = sys._getframe().f_back
     # caller file
     filename = caller_frame.f_code.co_filename
