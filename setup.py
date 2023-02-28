@@ -27,7 +27,7 @@ if __name__ == '__main__':
     find_packages("acllite",pack_list)
 setup(
     name="acllite",
-    version="1.0.4",
+    version="1.0.5",
     keywords=("pip", "acllite", ""),
     description="acllite",
     long_description=long_description,

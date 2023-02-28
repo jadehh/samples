@@ -1,6 +1,7 @@
-## Acllite v1.0.4
+## Acllite v1.0.5
 
 ### 更新日志
+* 注释打开Rtsp视频流的输出 
 * 注释Decode channel %d frame %d failed输出
 * 注释掉部分输出
 * update 新增AclliteImage转cv2 Image
