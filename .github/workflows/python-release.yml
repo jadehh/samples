@@ -2,7 +2,6 @@ name: Python Release
 
 on:
   push:
-    branches: [ "acclite" ]
     tags:
       - v[0-9]+.*
 jobs:
