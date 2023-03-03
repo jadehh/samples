@@ -18,6 +18,6 @@ Note: In this file, do not use the hard wrap in the middle of a sentence for com
 
 - fix warning 
 
-## [1.1.7] - 2023-03-03
+## [1.0.7] - 2023-03-03
 
 - fix warning 
