@@ -36,5 +36,4 @@ jobs:
           rm -r *.egg-info
           mv dist/*.whl ./
           rm -r dist
-          ls -l
 
