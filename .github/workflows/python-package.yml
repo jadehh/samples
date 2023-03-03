@@ -25,4 +25,13 @@ jobs:
       with:
         python-version: ${{ matrix.python-version }}
     - name: Install dependencies
+    run: |
+      if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
+    - name: Run setup.py
+          run: |
+            python setup.py sdist bdist_wheel
+            rm -r build
+            rm -r *.egg-info
+            mv dist/*.whl whl/
+            rm -r dist
