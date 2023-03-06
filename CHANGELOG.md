@@ -20,4 +20,4 @@ Note: In this file, do not use the hard wrap in the middle of a sentence for com
 
 ## [1.0.7] - 2023-03-03
 
-- fix warning 
+- 使用自动化脚本打包并发布

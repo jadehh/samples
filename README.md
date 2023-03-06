@@ -1,4 +1,4 @@
-## Acllite v1.0.6
+## Acllite v1.0.7
 
 ### 更新日志
 * log模块info不输出
