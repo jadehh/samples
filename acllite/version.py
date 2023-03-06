@@ -6,4 +6,4 @@
 # @Email    : jadehh@1ive.com
 # @Software : Samples
 # @Desc     :
-version = "1.0.5"
+version = "1.0.7"
